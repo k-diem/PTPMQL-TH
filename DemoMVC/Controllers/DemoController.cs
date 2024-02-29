@@ -10,9 +10,9 @@ namespace DemoMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string a)
+        public IActionResult Index(string hoTen, int tuoi)
         {
-            string strResult = "Du lieu vua nhap la " + a; // Sửa lỗi ở đây, đúng cách khai báo biến
+            string strResult = "Sinh vien " + hoTen + " " + tuoi + " tuoi"; // Sửa lỗi ở đây, đúng cách khai báo biến
             ViewBag.thongBao = strResult; // Sử dụng ViewBag để truyền dữ liệu đến View
             return View(); // Tạo một cái view tương ứng với action
         }
