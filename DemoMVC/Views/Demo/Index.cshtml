@@ -1,3 +1,12 @@
-@* Hiển thị giá trị của hằng số *@
-<p>Tên sinh viên: @ViewBag.StudentName</p>
-<p>Tuổi sinh viên: @ViewBag.StudentAge</p>
+<form asp-action="Index" method="post">
+    <label>Nhập vào số thứ nhất: </label>
+    <input type="text" placeholder="Nhập số thứ nhất" name="number1"> </br> </br>
+    <label>Nhập vào số thứ hai:</label>
+    <input type="text" placeholder="Nhập số thứ hai" name="number2"> <br><br>
+    <button type="submit">Gửi</button>
+    <h3>@ViewBag.differenceResult</h3>
+    <h3>@ViewBag.productResult</h3>
+    <h3>@ViewBag.quotientResult</h3>
+    <h3>@ViewBag.remainderResult</h3>
+</form>
+@* DUONG KHANH DIEM - 2021050130 *@
