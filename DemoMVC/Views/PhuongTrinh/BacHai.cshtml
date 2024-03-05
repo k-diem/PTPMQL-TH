@@ -1,0 +1,26 @@
+@model DemoMVC.Models.PhuongTrinhBacHai
+
+<form asp-action="BacHai" method="post">
+    <label for="HeSoA">Hệ số a:</label>
+    <input type="number" asp-for="HeSoA" />
+    <label for="HeSoB">Hệ số b:</label>
+    <input type="number" asp-for="HeSoB" />
+    <label for="HeSoC">Hệ số c:</label>
+    <input type="number" asp-for="HeSoC" />
+    <button type="submit">Giải</button>
+</form>
+
+@if (ViewBag.KetQua1 != null && ViewBag.KetQua2 != null)
+{
+    <div>Nghiệm 1: @ViewBag.KetQua1</div>
+    <div>Nghiệm 2: @ViewBag.KetQua2</div>
+}
+else if (ViewBag.KetQua1 != null)
+{
+    <div>Nghiệm kép: @ViewBag.KetQua1</div>
+}
+else
+{
+    <div>Phương trình vô nghiệm</div>
+}
+@* DUONG KHANH DIEM - 2021050130 *@
