@@ -1,0 +1,14 @@
+@model DemoMVC.Models.SinhVien
+
+<form asp-action="Index" method="post">
+    <label>Họ và tên: </label>
+    <input type="text" asp-for="HoTen" placeholder="Họ và tên"> </br> </br>
+    <label>Địa chỉ: </label>
+    <input type="text" asp-for="DiaChi" placeholder="Địa chỉ"> </br> </br>
+    <label>Tuổi: </label>
+    <input type="text" asp-for="Tuoi" placeholder="Tuổi"> </br> </br>
+    <label>Số điện thoại: </label>
+    <input type="text" asp-for="SoDienThoai" placeholder="Số điện thoại"> </br> </br>
+    <button type="submit">Gửi</button>
+    <h1>@ViewBag.Message</h1>
+</form>
