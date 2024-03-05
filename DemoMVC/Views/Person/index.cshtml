@@ -1,9 +1,11 @@
 @model DemoMVC.Models.Person
 
 <form asp-action="Index" method="post">
-    <label>Nhap vao ho ten: </label>
-    <input type="text" asp-for="FullName" placeholder="Nhap ho ten"> </br> </br>
-    <label>Nhap dia chi:</label>
+    <label>Nhap Person Id: </label>
+    <input type="text" asp-for="PersonId" placeholder="Nhap Person Id"> </br> </br>
+    <label>Nhap FullName:</label>
+    <input type="text" asp-for="FullName" placeholder="Nhap ho ten"> <br><br>
+    <label>Nhap Address:</label>
     <input type="text" asp-for="Address" placeholder="Nhap dia chi"> <br><br>
     <button type="submit">Send</button>
     <h1>@ViewBag.thongBao</h1>

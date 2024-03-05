@@ -1,6 +1,6 @@
 namespace DemoMVC.Models
 {
-    public class Student : Person
+    public class Student
     {
         public string StudentId { get; set; }
         public string Major { get; set; }

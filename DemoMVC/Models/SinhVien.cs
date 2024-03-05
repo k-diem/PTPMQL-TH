@@ -1,6 +1,6 @@
 namespace DemoMVC.Models
 {
-    public class SinhVien
+    public class SinhVien : Person
     {
         public string HoTen { get; set; } // Họ tên
         public string DiaChi { get; set; } // Địa chỉ

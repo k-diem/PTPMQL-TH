@@ -3,12 +3,8 @@
 <form asp-action="Index" method="post">
     <label>Mã nhân viên: </label>
     <input type="text" asp-for="EmployeeId" placeholder="Mã nhân viên"> </br> </br>
-    <label>Tên nhân viên: </label>
-    <input type="text" asp-for="EmployeeName" placeholder="Tên nhân viên"> </br> </br>
     <label>Tuổi: </label>
-    <input type="text" asp-for="Age" placeholder="Tuổi"> </br> </br>
-    <label>Lương: </label>
-    <input type="text" asp-for="Salary" placeholder="Lương"> </br> </br>
+    <input type="text" asp-for="Age" placeholder="Tuổi nhân viên"> </br> </br>
     <button type="submit">Gửi</button>
     <h1>@ViewBag.Message</h1>
 </form>
