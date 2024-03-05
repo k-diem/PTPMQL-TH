@@ -12,22 +12,25 @@ namespace DemoMVC.Controllers
         [HttpPost]
         public IActionResult Index(int number1, int number2)
         {
-            // Tính hiệu 2 số
-            int difference = number1 - number2;
-            ViewBag.differenceResult = $"Hiệu của {number1} và {number2} là {difference}";
+            string result;
+            if (number1 < number2)
+            {
+                result = $"{number1} nhỏ hơn {number2}";
+            }
+            else if (number1 > number2)
+            {
+                result = $"{number1} lớn hơn {number2}";
+            }
+            else
+            {
+                result = $"{number1} bằng {number2}";
+            }
 
-            // Tính tích 2 số
-            int product = number1 * number2;
-            ViewBag.productResult = $"Tích của {number1} và {number2} là {product}";
-
-            // Thực hiện phép chia lấy nguyên và lấy dư 2 số
-            int quotient = number1 / number2;
-            int remainder = number1 % number2;
-            ViewBag.quotientResult = $"Phép chia lấy nguyên của {number1} và {number2} là {quotient}";
-            ViewBag.remainderResult = $"Phép chia lấy dư của {number1} và {number2} là {remainder}";
+            ViewBag.comparisonResult = result;
 
             return View(); // Tạo một cái view tương ứng với action
         }
     }
 }
+
 //DUONG KHANH DIEM - 2021050130
