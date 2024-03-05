@@ -1,0 +1,19 @@
+@model DemoMVC.Models.Student
+
+<form asp-action="Index" method="post">
+    <label for="FullName">Họ và tên:</label>
+    <input type="text" asp-for="FullName" />
+    <label for="Address">Địa chỉ:</label>
+    <input type="text" asp-for="Address" />
+    <label for="Age">Tuổi:</label>
+    <input type="number" asp-for="Age" />
+    <label for="StudentId">Mã sinh viên:</label>
+    <input type="text" asp-for="StudentId" />
+    <label for="Major">Ngành học:</label>
+    <input type="text" asp-for="Major" />
+    <label for="Year">Năm học:</label>
+    <input type="number" asp-for="Year" />
+    <button type="submit">Gửi</button>
+    <h1>@ViewBag.Message</h1>
+</form>
+@* DUONG KHANH DIEM - 2021050130 *@
