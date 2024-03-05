@@ -1,11 +1,10 @@
 namespace DemoMVC.Models
 {
-    public class Employee
+    public class Employee : Person
     {
-        public string EmployeeId { get; set; } // Mã nhân viên
-        public string EmployeeName { get; set; } // Tên nhân viên
-        public int Age { get; set; } // Tuổi
-        public decimal Salary { get; set; } // Lương
+        public string EmployeeId { get; set; }
+        public int Age { get; set; }
     }
 }
+
 // DUONG KHANH DIEM - 2021050130
