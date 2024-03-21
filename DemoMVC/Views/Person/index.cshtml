@@ -31,6 +31,9 @@
           @Html.DisplayFor(modleItem => item.Address)
         </td>
         <td>
+          @Html.DisplayFor(modleItem => item.Age)
+        </td>
+        <td>
           <a asp-action="Edit" asp-route-id="@item.PersonId" class="button black container margin">Edit</a> |
           <a asp-action="Delete" asp-route-id="@item.PersonId" class="button black container margin">Delete</a>
         </td>
