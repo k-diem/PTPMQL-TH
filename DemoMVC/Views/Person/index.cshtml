@@ -1,13 +1,40 @@
-@model DemoMVC.Models.Person
+@* DUONG KHANH DIEM - 2021050130 *@
+@model IEnumerable<DemoMVC.Models.Person>
 
-<form asp-action="Index" method="post">
-    <label>Nhap Person Id: </label>
-    <input type="text" asp-for="PersonId" placeholder="Nhap Person Id"> </br> </br>
-    <label>Nhap FullName:</label>
-    <input type="text" asp-for="FullName" placeholder="Nhap ho ten"> <br><br>
-    <label>Nhap Address:</label>
-    <input type="text" asp-for="Address" placeholder="Nhap dia chi"> <br><br>
-    <button type="submit">Send</button>
-    <h1>@ViewBag.thongBao</h1>
-    <h2>Duong Khanh Diem - 2021050130</h2>
-</form>
+@{
+  ViewData["Title"] = "Index";
+}
+<h1 class="container teal">Index</h1>
+
+<p>
+  <a asp-action="Create" class="button black container margin">Create New</a>
+</p>
+<table class="table">
+  <thead class="border">
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.FullName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Address)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="border">
+    @foreach (var item in Model) {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+          @Html.DisplayFor(modleItem => item.Address)
+        </td>
+        <td>
+          <a asp-action="Edit" asp-route-id="@item.PersonId" class="button black container margin">Edit</a> |
+          <a asp-action="Delete" asp-route-id="@item.PersonId" class="button black container margin">Delete</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
