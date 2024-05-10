@@ -1,13 +1,46 @@
-@model DemoMVC.Models.Student
+@model IEnumerable<DemoMVC.Models.Student>
 
-<form asp-action="Index" method="post">
-    <label for="StudentId">Mã sinh viên:</label>
-    <input type="text" asp-for="StudentId" />
-    <label for="Major">Ngành học:</label>
-    <input type="text" asp-for="Major" />
-    <label for="Year">Năm học:</label>
-    <input type="number" asp-for="Year" />
-    <button type="submit">Gửi</button>
-    <h1>@ViewBag.Message</h1>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index">
+    <input type="text" name="tuKhoa"/>
+    <input type="submit" value="Search"/>
 </form>
-@* DUONG KHANH DIEM - 2021050130 *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

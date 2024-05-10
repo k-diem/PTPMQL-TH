@@ -6,7 +6,7 @@ namespace DemoMVC.Models
     [Table("Employees")]
     public class Employee : Person
     {
-        public string EmployeeId { get; set; }
+        public string EmployeeId { get; set; }  //prop
         public int Age { get; set; }
     }
 }

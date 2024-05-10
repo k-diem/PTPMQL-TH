@@ -10,12 +10,14 @@ namespace DemoMVC.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+#pragma warning disable IDE0058 // Expression value is never used
             migrationBuilder.AddColumn<int>(
                 name: "Age",
                 table: "Persons",
                 type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
+#pragma warning restore IDE0058 // Expression value is never used
 
             migrationBuilder.CreateTable(
                 name: "Employees",
