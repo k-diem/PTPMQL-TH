@@ -31,7 +31,7 @@ namespace DemoMVC.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("StudentName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

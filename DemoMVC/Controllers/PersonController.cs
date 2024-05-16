@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DemoMVC.Data;
 using DemoMVC.Models;
 using DemoMVC.Models.Process;
+using OfficeOpenXml;
 
 namespace DemoMVC.Controllers
 {
@@ -55,10 +56,42 @@ namespace DemoMVC.Controllers
             }
             return View();
         }
+
+        public IActionResult Download()
+    {
+    // Đặt tên file khi tải xuống
+    var fileName = "DownloadFile" + ".xlsx";
+    using (ExcelPackage excelPackage = new ExcelPackage())
+    {
+        ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet 1");
+        // Thêm một số nội dung vào ô A1
+        worksheet.Cells["A1"].Value = "PersonID";
+        worksheet.Cells["B1"].Value = "FullName";
+        worksheet.Cells["C1"].Value = "Address";
+        worksheet.Cells["D1"].Value = "Age";
+
+        
+        // Lấy tất cả Person
+        var personList = _context.Person.ToList();
+        
+        // Điền dữ liệu vào worksheet
+        worksheet.Cells["A2"].LoadFromCollection(personList);
+        
+        var stream = new MemoryStream(excelPackage.GetAsByteArray());
+        
+        // Tải file xuống
+        return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+    }
+    }
+
         public async Task<IActionResult> Index()
         {
-           var model = await _context.Person.ToListAsync();
-           return View(model);
+           return View(await _context.Person.ToListAsync());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string timKiem)
+        {
+            return View(await _context.Person.Where(ps => ps.FullName.Contains(timKiem)).ToListAsync());
         }
         public IActionResult Create()
         {
@@ -125,7 +158,7 @@ namespace DemoMVC.Controllers
             {
                 return NotFound();
             }
-            var person = await _context.Person.FirstOrDefaultAsync(m => m.PersonId == id);
+            var person = await _context.Person.FirstOrDefaultAsync(ps => ps.PersonId == id);
             if (person == null)
             {
                 return NotFound();
