@@ -4,6 +4,7 @@ using DemoMVC.Data;
 using DemoMVC.Models;
 using DemoMVC.Models.Process;
 using OfficeOpenXml;
+using X.PagedList;
 
 namespace DemoMVC.Controllers
 {
@@ -84,9 +85,10 @@ namespace DemoMVC.Controllers
     }
     }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-           return View(await _context.Person.ToListAsync());
+            var model = _context.Person.ToList().ToPagedList(page ?? 1, 5);
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> Index(string timKiem)

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RfbEEbAZbKyMI+gmEAjX/qj4LV6caEaJsI72kuGHdXXFkIXW8N6VB7rFNU3YFJqqqxBSTFlMrB5sSxtdvr8h0w==",
+  "dgSpecHash": "Fuq8cLB1y7hwY79ITPOpqM209aIx7ejFULVooC9p7UAV94ChQvUn93ZYRN3YejruONXGVOI2YjB/AcnbDvCYtQ==",
   "success": true,
   "projectFilePath": "D:\\PTPMQL-TH\\DemoMVC\\DemoMVC.csproj",
   "expectedPackageFiles": [
@@ -180,7 +180,9 @@
     "C:\\Users\\DELL\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.threading.tasks.dataflow\\7.0.0\\system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
+    "C:\\Users\\DELL\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\x.pagedlist\\9.1.2\\x.pagedlist.9.1.2.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\x.pagedlist.mvc.core\\9.1.2\\x.pagedlist.mvc.core.9.1.2.nupkg.sha512"
   ],
   "logs": []
 }

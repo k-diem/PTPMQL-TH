@@ -1,25 +1,19 @@
 @* DUONG KHANH DIEM - 2021050130 *@
 @model IEnumerable<DemoMVC.Models.Person>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
 
 @{
   ViewData["Title"] = "Index";
-  Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
-<h1 class="container teal">Index</h1>
+<h1 class="w3-container w3-teal">Index</h1>
 
 <p>
-  <a asp-action="Create" class="button black container margin">Create New</a>
-  <a class="btn btn-success" asp-action="Download">Download</a>
+  <a asp-action="Create" class="w3-button w3-black w3-container w3-margin">Create New</a>
 </p>
-<hr>
-<form action="Index">
-  <input type="text" name="timKiem">
-  <input type="submit" value="Search">
-</form>
-<hr>
-<table class="table">
-  <thead class="border">
+<table class="w3-table">
+  <thead class="w3-border">
     <tr>
       <th>
         @Html.DisplayNameFor(model => model.FullName)
@@ -28,11 +22,12 @@
         @Html.DisplayNameFor(model => model.Address)
       </th>
       <th>
-        @Html.DisplayNameFor(model=>model.Age)
+        @Html.DisplayNameFor(model => model.Age)
       </th>
+      <th></th>
     </tr>
   </thead>
-  <tbody class="border">
+  <tbody class="w3-border">
     @foreach (var item in Model) {
       <tr>
         <td>
@@ -42,13 +37,25 @@
           @Html.DisplayFor(modleItem => item.Address)
         </td>
         <td>
-          @Html.DisplayFor(modleItem => item.Age)
+          @Html.DisplayFor(modelItem => item.Age)
         </td>
+
         <td>
-          <a asp-action="Edit" asp-route-id="@item.PersonId" class="button black container margin">Edit</a> |
-          <a asp-action="Delete" asp-route-id="@item.PersonId" class="button black container margin">Delete</a>
+          <a asp-action="Edit" asp-route-id="@item.PersonId" class="w3-button w3-black w3-container w3-margin">Edit</a> |
+          <a asp-action="Delete" asp-route-id="@item.PersonId" class="w3-button w3-black w3-container w3-margin">Delete</a>
         </td>
       </tr>
     }
   </tbody>
 </table>
+
+<hr>
+@Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}), new X.PagedList.Mvc.Core.PagedListRenderOptions { LiElementClasses = new string[] {"page-item"}, PageClasses = new string[] { "page-link" }})
+<script scr="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#pageSize").change(function(){
+      $("#form1").submit();
+    });
+  });
+</script>
