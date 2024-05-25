@@ -1,61 +1,66 @@
-@* DUONG KHANH DIEM - 2021050130 *@
-@model IEnumerable<DemoMVC.Models.Person>
+@model IPagedList<DemoMVC.Models.Person>
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
 
-
 @{
-  ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
+
 <h1 class="w3-container w3-teal">Index</h1>
 
 <p>
-  <a asp-action="Create" class="w3-button w3-black w3-container w3-margin">Create New</a>
+    <a asp-action="Create" class="w3-button w3-black w3-container w3-margin">Create New</a>
 </p>
-<table class="w3-table">
-  <thead class="w3-border">
-    <tr>
-      <th>
-        @Html.DisplayNameFor(model => model.FullName)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Address)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Age)
-      </th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody class="w3-border">
-    @foreach (var item in Model) {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-          @Html.DisplayFor(modleItem => item.Address)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Age)
-        </td>
 
-        <td>
-          <a asp-action="Edit" asp-route-id="@item.PersonId" class="w3-button w3-black w3-container w3-margin">Edit</a> |
-          <a asp-action="Delete" asp-route-id="@item.PersonId" class="w3-button w3-black w3-container w3-margin">Delete</a>
-        </td>
-      </tr>
-    }
-  </tbody>
+<table class="w3-table">
+    <thead class="w3-border">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().FullName)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Address)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Age)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="w3-border">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PersonId" class="w3-button w3-black w3-container w3-margin">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PersonId" class="w3-button w3-black w3-container w3-margin">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-<hr>
-@Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page = page}), new X.PagedList.Mvc.Core.PagedListRenderOptions { LiElementClasses = new string[] {"page-item"}, PageClasses = new string[] { "page-link" }})
-<script scr="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<hr />
+
+@using (Html.BeginForm("Index", "Person", FormMethod.Get, new { id = "form1" }))
+{
+    <div class="row">
+        <div class="col-md-11">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, pageSize = ViewBag.psize }), 
+            new PagedListRenderOptions
+            {
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" }
+            })
+        </div>
+        <div class="col-md-1">
+            @Html.DropDownList("pageSize", (SelectList)ViewBag.PageSizeList, new { @class = "form-select" })
+        </div>
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-  $(document).ready(function(){
-    $("#pageSize").change(function(){
-      $("#form1").submit();
+    $(document).ready(function () {
+        $("#pageSize").change(function () {
+            $("#form1").submit();
+        });
     });
-  });
 </script>
