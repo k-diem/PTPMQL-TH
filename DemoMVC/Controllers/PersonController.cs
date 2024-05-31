@@ -86,27 +86,56 @@ namespace DemoMVC.Controllers
     }
     }
 
-        public async Task<IActionResult> Index(int? page, int? PageSize)
-        {
-            ViewBag.PageSize = new List<SelectListItem>()
-            {
-                new SelectListItem() {Value="3", Text="3"},
-                new SelectListItem() {Value="5", Text="5"},
-                new SelectListItem() {Value="10", Text="10"},
-                new SelectListItem() {Value="15", Text="15"},
-                new SelectListItem() {Value="25", Text="25"},
-                new SelectListItem() {Value="50", Text="50"},  
-            };
-            int pagesize = (PageSize ?? 3);
-            ViewBag.psize = pagesize;
-            var model = _context.Person.ToList().ToPagedList(page ?? 1, pagesize);
-            return View(model);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Index(string timKiem)
-        {
-            return View(await _context.Person.Where(ps => ps.FullName.Contains(timKiem)).ToListAsync());
-        }
+        // public async Task<IActionResult> Index(int? page, int? PageSize)
+        // {
+        //     ViewBag.PageSize = new List<SelectListItem>()
+        //     {
+        //         new SelectListItem() {Value="3", Text="3"},
+        //         new SelectListItem() {Value="5", Text="5"},
+        //         new SelectListItem() {Value="10", Text="10"},
+        //         new SelectListItem() {Value="15", Text="15"},
+        //         new SelectListItem() {Value="25", Text="25"},
+        //         new SelectListItem() {Value="50", Text="50"},  
+        //     };
+        //     int pagesize = (PageSize ?? 3);
+        //     ViewBag.psize = pagesize;
+        //     var model = _context.Person.ToList().ToPagedList(page ?? 1, pagesize);
+        //     return View(model);
+        // }
+        // [HttpPost]
+        // public async Task<IActionResult> Index(string timKiem)
+        // {
+        //     return View(await _context.Person.Where(p => p.FullName.Contains(timKiem)).ToListAsync());
+        // }
+
+
+public async Task<IActionResult> Index(int? page, int? pageSize, string timKiem = null)
+{
+    ViewBag.PageSize = new List<SelectListItem>()
+    {
+        new SelectListItem() { Value = "3", Text = "3" },
+        new SelectListItem() { Value = "5", Text = "5" },
+        new SelectListItem() { Value = "10", Text = "10" },
+        new SelectListItem() { Value = "15", Text = "15" },
+        new SelectListItem() { Value = "25", Text = "25" },
+        new SelectListItem() { Value = "50", Text = "50" },  
+    };
+
+    int pageSizeValue = (pageSize ?? 3);
+    ViewBag.PageSizeValue = pageSizeValue;
+
+    IQueryable<Person> query = _context.Person.AsQueryable();
+
+    if (!string.IsNullOrEmpty(timKiem))
+    {
+        query = query.Where(p => p.FullName.Contains(timKiem));
+    }
+
+    var model = await query.ToPagedListAsync(page ?? 1, pageSizeValue);
+
+    return View(model);
+}
+
         public IActionResult Create()
         {
             return View();
@@ -200,4 +229,4 @@ namespace DemoMVC.Controllers
             return (_context.Person?.Any(e => e.PersonId == id)).GetValueOrDefault();
         }
     }
-}
+} 

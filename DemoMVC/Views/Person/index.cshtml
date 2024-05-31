@@ -1,6 +1,7 @@
 @model IPagedList<DemoMVC.Models.Person>
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc;
 
 @{
     ViewData["Title"] = "Index";
@@ -9,8 +10,15 @@
 <h1 class="w3-container w3-teal">Index</h1>
 
 <p>
-    <a asp-action="Create" class="w3-button w3-black w3-container w3-margin">Create New</a>
+    <a asp-action="Create" class="w3-button w3-black w3-container w3-margin">Create New</a><br><br>
+    <a class="btn btn-success" asp-action="Download">Download</a>
 </p>
+
+    <form asp-action="Index">
+        <input type="text" name="timKiem"/>
+        <input type="submit" value="Search"/>
+    </form>
+
 
 <table class="w3-table">
     <thead class="w3-border">
